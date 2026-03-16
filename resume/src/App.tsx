@@ -17,7 +17,7 @@ function App() {
           Print Resume
         </button>
       </div>
-      <main className="max-w-4xl mx-auto bg-white shadow-xl print:shadow-none print:max-w-full border border-gray-100 print:border-none p-12 sm:p-16 lg:p-20 print:p-0">
+      <main className="max-w-4xl mx-auto bg-white shadow-xl print:shadow-none print:max-w-full border border-gray-100 print:border-none p-12 sm:p-16 lg:p-20 print:p-0 print:text-sm">
         <Header personalInfo={resumeData.personalInfo} />
         <Summary summary={resumeData.summary} />
         <Experience experience={resumeData.experience} />

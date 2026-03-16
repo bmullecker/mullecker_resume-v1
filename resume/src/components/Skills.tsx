@@ -4,18 +4,18 @@ import type { SkillCategory } from '../data';
 export default function Skills({ skills }: { skills: SkillCategory[] }) {
     return (
         <section className="mb-8 print:mb-6 break-inside-avoid">
-            <h3 className="text-sm font-bold uppercase tracking-widest text-black border-b-2 border-black pb-2 mb-6 print:mb-4">
+            <h3 className="text-sm font-bold uppercase tracking-widest text-black border-b-2 border-black pb-2 mb-4 print:mb-2">
                 Technical Skills
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 print:grid-cols-2 print:gap-4">
+            <div className="flex flex-col gap-3 print:gap-2">
                 {skills.map((category, index) => (
-                    <div key={index}>
-                        <h4 className="font-bold text-gray-900 mb-2">{category.category}</h4>
-                        <div className="flex flex-wrap gap-2">
+                    <div key={index} className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 print:flex-row print:items-baseline print:gap-4">
+                        <h4 className="text-sm font-bold text-gray-900 w-40 shrink-0 print:w-36">{category.category}</h4>
+                        <div className="flex flex-wrap gap-1">
                             {category.items.map((skill, i) => (
                                 <span
                                     key={i}
-                                    className="bg-gray-100 text-gray-800 border border-gray-200 px-3 py-1 rounded-sm text-sm font-medium"
+                                    className="bg-gray-100 text-gray-800 border border-gray-200 px-2 py-0.5 rounded-sm text-xs font-medium"
                                 >
                                     {skill}
                                 </span>

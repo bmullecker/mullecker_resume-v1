@@ -49,7 +49,7 @@ export const resumeData: ResumeData = {
     },
     {
       category: "CMS & Platforms",
-      items: ["WordPress", "WooCommerce", "Shopify", "DotNetNuke", "ExpressionEngine"],
+      items: ["WordPress", "WooCommerce", "Shopify", "DotNetNuke", "ExpressionEngine", "Drupal"],
     },
     {
       category: "Design & Tools",
@@ -69,7 +69,7 @@ export const resumeData: ResumeData = {
         "Engineered precision-targeted UI components and enhanced Listrak's enterprise marketing boilerplate, driving an average 30% increase in list growth and conversion rates as high as 6.9%.",
         "Drove significant financial impact, achieving trigger revenue increases upwards of 562% for high-volume retail partners.",
         "Architected and maintained the company’s enterprise front-end boilerplate to ensure scalable, readable code and harmonized UI/UX patterns with complex cross-channel strategies.",
-        "Designed and built a proprietary virtual demo platform for client stakeholders to test and approve interactive logic before deployment.",
+        "Designed and built a proprietary virtual demo platform for client stakeholders and strategy departments to test and approve interactive logic before deployment.",
       ],
     },
     {
@@ -90,7 +90,7 @@ export const resumeData: ResumeData = {
       responsibilities: [
         "Spearheaded the full UI/UX redesign and engineering of PsychU.org, successfully scaling the active user base by 315% to over 82,000 members.",
         "Achieved 99.99% site stability during peak traffic periods while focusing on high-traffic performance and content scalability.",
-        "Integrated custom front-end architecture with WordPress and Laravel to streamline platform-wide content management.",
+        "Integrated custom front-end architecture with WordPress and Laravel, adhering to MVC patterns, to streamline platform-wide content management.",
       ],
     },
     {

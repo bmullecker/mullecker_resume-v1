@@ -6,19 +6,21 @@
 
 @layer base {
   body {
-    @apply bg-gray-50 text-gray-900;
+    @apply bg-gray-50 text-gray-900 text-pretty;
   }
 }
 
 @media print {
   @page {
-    margin: 0;
+    margin: 0.7in;
     size: auto;
   }
 
   body {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
+    orphans: 2;
+    widows: 2;
     @apply bg-white;
   }
 }

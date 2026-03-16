@@ -67,8 +67,7 @@ export const resumeData: ResumeData = {
       date: "2021 – 2025",
       responsibilities: [
         "Engineered precision-targeted UI components and enhanced Listrak's enterprise marketing boilerplate, driving an average <strong>30</strong>% increase in list growth and achieving trigger revenue increases upwards of <strong>562</strong>% for high-volume retail partners.",
-        "Maintained and enhanced the company’s enterprise front-end boilerplate to ensure scalable, readable code and harmonized UI/UX patterns with complex cross-channel strategies.",
-        "Designed and built a proprietary virtual demo platform for client stakeholders and strategy departments to test and approve interactive logic before deployment.",
+        "Maintained and enhanced the enterprise front-end boilerplate and engineered a proprietary virtual demo platform for stakeholders to validate interactive logic and UI/UX patterns prior to deployment.",
       ],
     },
     {
@@ -76,8 +75,7 @@ export const resumeData: ResumeData = {
       company: "WebTek",
       date: "2020 – 2021",
       responsibilities: [
-        "Engineered <strong>50</strong>+ bespoke full-stack ecosystems and custom WordPress themes from scratch, delivering flagship architectures that have remained maintenance-free on original code for over five years.",
-        "Modernized legacy websites and plugins to meet current standards for accessibility, SEO, and Core Web Vitals.",
+        "Engineered <strong>50</strong>+ bespoke full-stack ecosystems and custom WordPress themes from scratch, delivering flagship architectures that have remained maintenance-free on original code for <strong>over five years</strong>, while modernizing legacy websites and plugins to meet current accessibility, performance, and SEO standards.",
       ],
     },
     {
@@ -93,7 +91,7 @@ export const resumeData: ResumeData = {
       company: "Shift Lab NY",
       date: "2016 – 2017",
       responsibilities: [
-        "Engineered pixel-perfect React components for Tier-<strong>1</strong> initiatives, including Microsoft Sonoma (Teams), by integrating high-fidelity front-end builds with WordPress and a proprietary headless CMS architected on ExpressionEngine.",
+        "Engineered pixel-perfect React components for Tier-1 initiatives, including <strong>Microsoft Sonoma (Teams)</strong>, by integrating high-fidelity front-end builds with WordPress and a proprietary headless CMS architected on ExpressionEngine.",
       ],
     },
     {

@@ -4,7 +4,7 @@ import type { Education as EducationType } from '../data';
 export default function Education({ education }: { education: EducationType[] }) {
     return (
         <section className="break-inside-avoid">
-            <h3 className="text-sm font-bold uppercase tracking-widest text-black border-b-2 border-black pb-2 mb-4 print:mb-2">
+            <h3 className="text-sm font-bold uppercase tracking-widest text-black border-b-2 border-black pb-2 mb-4 print:mb-2" style={{ marginTop: '20px' }}>
                 Education
             </h3>
             <div className="space-y-4 print:space-y-2">

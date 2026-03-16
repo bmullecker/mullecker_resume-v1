@@ -3,8 +3,8 @@ import type { SkillCategory } from '../data';
 
 export default function Skills({ skills }: { skills: SkillCategory[] }) {
     return (
-        <section className="mb-8 print:mb-6 break-inside-avoid">
-            <h3 className="text-sm font-bold uppercase tracking-widest text-black border-b-2 border-black pb-2 mb-4 print:mb-2">
+        <section className="mb-4 print:mb-2 break-inside-avoid">
+            <h3 className="text-sm font-bold uppercase tracking-widest text-black border-b-2 border-black pb-2 mb-4 print:mb-2" style={{ marginTop: '20px' }}>
                 Technical Skills
             </h3>
             <div className="flex flex-col gap-3 print:gap-2">

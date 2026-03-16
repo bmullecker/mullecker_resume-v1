@@ -1,6 +1,5 @@
 
 import Header from './components/Header';
-import Summary from './components/Summary';
 import Experience from './components/Experience';
 import Skills from './components/Skills';
 import Education from './components/Education';
@@ -19,7 +18,6 @@ function App() {
       </div>
       <main className="max-w-4xl mx-auto bg-white shadow-xl print:shadow-none print:max-w-full border border-gray-100 print:border-none p-12 sm:p-16 lg:p-20 print:p-0 print:text-sm">
         <Header personalInfo={resumeData.personalInfo} />
-        <Summary summary={resumeData.summary} />
         <Experience experience={resumeData.experience} />
         <Skills skills={resumeData.skills} />
         <Education education={resumeData.education} />

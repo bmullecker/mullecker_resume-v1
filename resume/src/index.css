@@ -12,7 +12,7 @@
 
 @media print {
   @page {
-    margin: 0.53in 0.7in;
+    margin: 0.53in;
     size: auto;
   }
 

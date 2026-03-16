@@ -45,19 +45,19 @@ export const resumeData: ResumeData = {
   skills: [
     {
       category: "Front-End",
-      items: ["HTML5", "CSS3 (SASS/LESS)", "Tailwind", "JavaScript (ES6+)", "React"],
+      items: ["• HTML5", "• CSS3 (SASS/LESS)", "• Tailwind", "• JavaScript (ES6+)", "• React"],
     },
     {
       category: "Back-End & CMS",
-      items: ["WordPress", "Shopify", "PHP", "MySQL", "Laravel (MVC)"],
+      items: ["• WordPress", "• Shopify", "• PHP", "• MySQL", "• Laravel (MVC)"],
     },
     {
       category: "Design",
-      items: ["UI/UX Design", "Figma", "Adobe Creative Cloud"],
+      items: ["• UI/UX Design", "• Figma", "• Adobe Creative Cloud"],
     },
     {
       category: "Optimization",
-      items: ["Accessibility (WCAG)", "SEO", "Performance Tuning", "Cross-Browser Compatibility"],
+      items: ["• Accessibility (WCAG)", "• SEO", "• Performance Tuning", "• Cross-Browser Compatibility"],
     },
   ],
   experience: [

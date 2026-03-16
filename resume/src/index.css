@@ -24,3 +24,81 @@
     @apply bg-white;
   }
 }
+
+@keyframes glitch {
+  0% {
+    transform: translate(0)
+  }
+
+  20% {
+    transform: translate(-4px, 4px)
+  }
+
+  40% {
+    transform: translate(-4px, -4px)
+  }
+
+  60% {
+    transform: translate(4px, 4px)
+  }
+
+  80% {
+    transform: translate(4px, -4px)
+  }
+
+  100% {
+    transform: translate(0)
+  }
+}
+
+.glitch-active main {
+  animation: glitch 0.1s linear infinite;
+  filter: hue-rotate(90deg) saturate(300%) invert(10%) contrast(150%);
+}
+
+.marathon-text {
+  font-family: 'Courier New', Courier, monospace;
+  color: #3f3;
+  text-shadow: 0 0 10px rgba(51, 255, 51, 0.8), 0 0 20px rgba(51, 255, 51, 0.4);
+}
+
+.marathon-bg {
+  background-color: #050a05;
+}
+
+.scanlines {
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+  background-size: 100% 4px;
+}
+
+@keyframes scroll-y {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+.animate-scroll-y {
+  animation: scroll-y 8s linear infinite;
+}
+
+@keyframes runner-move {
+  0% {
+    transform: scale(1.1) translate(0, 0);
+  }
+
+  50% {
+    transform: scale(1.3) translate(-20px, 15px);
+  }
+
+  100% {
+    transform: scale(1.1) translate(0, 0);
+  }
+}
+
+.animate-runner {
+  animation: runner-move 6s ease-in-out infinite;
+}

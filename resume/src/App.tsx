@@ -3,12 +3,14 @@ import Header from './components/Header';
 import Experience from './components/Experience';
 import Skills from './components/Skills';
 import Education from './components/Education';
+import Jazzify from './components/Jazzify';
 import { resumeData } from './data';
 
 function App() {
   return (
     <div className="min-h-screen bg-gray-50 py-10 print:py-0 print:bg-white text-gray-900 font-sans selection:bg-black selection:text-white">
-      <div className="fixed top-4 right-4 print:hidden">
+      <div className="fixed top-4 right-4 print:hidden flex gap-4 z-50">
+        <Jazzify />
         <button
           onClick={() => window.print()}
           className="bg-black text-white px-6 py-3 rounded-full font-bold shadow-lg hover:bg-gray-800 transition-colors"

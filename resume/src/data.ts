@@ -41,23 +41,23 @@ export const resumeData: ResumeData = {
     email: "bmullecker@gmail.com",
     linkedin: "linkedin.com/in/bmullecker",
   },
-  summary: "Senior Front End Developer & UI/UX Designer with over 13 years of experience bridging the gap between high-fidelity design and scalable implementation. A rare hybrid of creative vision and technical precision specializing in building responsive, high-performance web interfaces that drive measurable business growth. Expert in accessibility, performance optimization, and custom CMS integrations for enterprise and SaaS environments.",
+  summary: "Senior Front-End Developer & UI/UX Designer with over <strong>13</strong> years of experience bridging the gap between high-fidelity design and scalable implementation. A rare hybrid of creative vision and technical precision specializing in building responsive, high-performance web interfaces that drive measurable business growth. Expert in accessibility, performance optimization, and custom CMS integrations for enterprise and SaaS environments.",
   skills: [
     {
-      category: "Languages & Core",
-      items: ["HTML5", "CSS3 (SASS/LESS)", "JavaScript (ES6+)", "PHP", "MySQL", "React"],
+      category: "Front-End",
+      items: ["HTML5", "CSS3 (SASS/LESS)", "Tailwind", "JavaScript (ES6+)", "React"],
     },
     {
-      category: "CMS & Platforms",
-      items: ["WordPress", "WooCommerce", "Shopify", "DotNetNuke", "ExpressionEngine", "Drupal"],
+      category: "Back-End & CMS",
+      items: ["WordPress", "Shopify", "PHP", "MySQL", "Laravel (MVC)"],
     },
     {
-      category: "Design & Tools",
-      items: ["UI/UX Design", "Figma", "Adobe CC (Photoshop, Illustrator, InDesign, XD)"],
+      category: "Design",
+      items: ["UI/UX Design", "Figma", "Adobe Creative Cloud"],
     },
     {
       category: "Optimization",
-      items: ["Web Accessibility (WCAG)", "Technical SEO", "Performance Tuning", "Cross-Browser Compatibility", "Debugging/Testing"],
+      items: ["Accessibility (WCAG)", "SEO", "Performance Tuning", "Cross-Browser Compatibility"],
     },
   ],
   experience: [
@@ -66,9 +66,8 @@ export const resumeData: ResumeData = {
       company: "Listrak",
       date: "2021 – 2025",
       responsibilities: [
-        "Engineered precision-targeted UI components and enhanced Listrak's enterprise marketing boilerplate, driving an average 30% increase in list growth and conversion rates as high as 6.9%.",
-        "Drove significant financial impact, achieving trigger revenue increases upwards of 562% for high-volume retail partners.",
-        "Architected and maintained the company’s enterprise front-end boilerplate to ensure scalable, readable code and harmonized UI/UX patterns with complex cross-channel strategies.",
+        "Engineered precision-targeted UI components and enhanced Listrak's enterprise marketing boilerplate, driving an average <strong>30</strong>% increase in list growth and achieving trigger revenue increases upwards of <strong>562</strong>% for high-volume retail partners.",
+        "Maintained and enhanced the company’s enterprise front-end boilerplate to ensure scalable, readable code and harmonized UI/UX patterns with complex cross-channel strategies.",
         "Designed and built a proprietary virtual demo platform for client stakeholders and strategy departments to test and approve interactive logic before deployment.",
       ],
     },
@@ -77,10 +76,8 @@ export const resumeData: ResumeData = {
       company: "WebTek",
       date: "2020 – 2021",
       responsibilities: [
-        "Engineered 50+ bespoke full-stack ecosystems, developing custom WordPress themes and complex logic from scratch.",
-        "Built flagship architecture that has remained maintenance-free on original code for over five years.",
+        "Engineered <strong>50</strong>+ bespoke full-stack ecosystems and custom WordPress themes from scratch, delivering flagship architectures that have remained maintenance-free on original code for over five years.",
         "Modernized legacy websites and plugins to meet current standards for accessibility, SEO, and Core Web Vitals.",
-        "Conceptualized and executed sophisticated interface designs and interactive states for end-to-end web builds.",
       ],
     },
     {
@@ -88,9 +85,7 @@ export const resumeData: ResumeData = {
       company: "OPEN MINDS",
       date: "2017 – 2019",
       responsibilities: [
-        "Spearheaded the full UI/UX redesign and engineering of PsychU.org, successfully scaling the active user base by 315% to over 82,000 members.",
-        "Achieved 99.99% site stability during peak traffic periods while focusing on high-traffic performance and content scalability.",
-        "Integrated custom front-end architecture with WordPress and Laravel, adhering to MVC patterns, to streamline platform-wide content management.",
+        "Spearheaded the full UI/UX redesign and engineering of PsychU.org, successfully scaling the active user base by <strong>315</strong>% to over <strong>82,000</strong> members and achieving <strong>99.99</strong>% site stability during peak traffic periods with a focus on high-traffic performance and content scalability.",
       ],
     },
     {
@@ -98,8 +93,7 @@ export const resumeData: ResumeData = {
       company: "Shift Lab NY",
       date: "2016 – 2017",
       responsibilities: [
-        "Contributed specialized front-end expertise and pixel-perfect React components to Tier-1 enterprise initiatives, including Microsoft Sonoma (now Microsoft Teams).",
-        "Developed and maintained sites across public CMS platforms and internal proprietary content management systems.",
+        "Engineered pixel-perfect React components for Tier-<strong>1</strong> initiatives, including Microsoft Sonoma (Teams), by integrating high-fidelity front-end builds with WordPress and a proprietary headless CMS architected on ExpressionEngine.",
       ],
     },
     {
@@ -107,9 +101,7 @@ export const resumeData: ResumeData = {
       company: "AGIS",
       date: "2014 – 2016",
       responsibilities: [
-        "Managed the end-to-end design and development lifecycle as the sole technical and creative lead, transforming legacy websites into modern, responsive applications.",
-        "Built responsive, custom front-end experiences across platforms including WordPress, DotNetNuke, Shopify, and Drupal.",
-        "Served as technical authority for advanced CSS, architecting complex styling logic and high-precision layouts.",
+        "Served as the sole technical and creative lead for the end-to-end modernization of legacy enterprise applications. Engineered high-precision, responsive front-end experiences across WordPress, Shopify, DNN, and Drupal, while architecting complex CSS logic to ensure pixel-perfect cross-platform consistency.",
       ],
     },
   ],

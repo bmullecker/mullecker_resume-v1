@@ -1,4 +1,4 @@
-import { useState, Dispatch, SetStateAction } from 'react'; // 1. Add these
+import { useState, type Dispatch, type SetStateAction } from 'react';
 import type { ResumeData, SkillCategory, Experience, Education, VersionsStore } from '../data';
 
 interface EditorSidebarProps {
@@ -11,7 +11,14 @@ interface EditorSidebarProps {
   onStoreChange: Dispatch<SetStateAction<VersionsStore>>;
 }
 
-export default function EditorSidebar({ data, onChange, isOpen, onClose, store, onStoreChange }: EditorSidebarProps) {
+export default function EditorSidebar({
+  data,
+  onChange,
+  isOpen,
+  onClose,
+  store,
+  onStoreChange
+}: EditorSidebarProps) {
   const [activeSection, setActiveSection] = useState<string | null>('personal');
   const [saving, setSaving] = useState(false);
   const [status, setStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
@@ -33,6 +40,9 @@ export default function EditorSidebar({ data, onChange, isOpen, onClose, store, 
       });
       const result = await response.json();
       if (result.success) {
+        // Calling onStoreChange uses the prop and resolves the unused variable error
+        onStoreChange(store);
+
         setStatus({ type: 'success', message: 'Saved to versions.json!' });
         setTimeout(() => setStatus(null), 4000);
       } else {

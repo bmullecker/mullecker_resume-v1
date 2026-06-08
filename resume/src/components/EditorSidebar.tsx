@@ -20,7 +20,7 @@ export default function EditorSidebar({
   onStoreChange
 }: EditorSidebarProps) {
   const [activeSection, setActiveSection] = useState<string | null>('personal');
-  const [saving, setSaving] = useState(false);
+  const [saving, _setSaving] = useState(false);
   const [status, setStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
   const toggleSection = (section: string) => {

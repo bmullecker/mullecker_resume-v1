@@ -19,7 +19,7 @@ function App() {
   const [store, setStore] = useState<VersionsStore>(initialStore);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [versionsOpen, setVersionsOpen] = useState(false);
-  const [loaded, setLoaded] = useState(false);
+  // const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const savedData = localStorage.getItem('resume-store');
@@ -49,7 +49,7 @@ function App() {
     window.print();
   };
 
-  if (!loaded) return null;
+  // if (!loaded) return null;
 
   return (
     <div className="app-container">

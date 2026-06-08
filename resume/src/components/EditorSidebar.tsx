@@ -7,10 +7,10 @@ interface EditorSidebarProps {
   isOpen: boolean;
   onClose: () => void;
   store: VersionsStore;
-  onStoreChange: (newStore: VersionsStore) => void;
+  // onStoreChange: (newStore: VersionsStore) => void;
 }
 
-export default function EditorSidebar({ data, onChange, isOpen, onClose, store, onStoreChange }: EditorSidebarProps) {
+export default function EditorSidebar({ data, onChange, isOpen, onClose, store }: EditorSidebarProps) {
   const [activeSection, setActiveSection] = useState<string | null>('personal');
   const [saving, setSaving] = useState(false);
   const [status, setStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);

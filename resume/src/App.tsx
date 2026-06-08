@@ -24,10 +24,24 @@ function App() {
   useEffect(() => {
     const savedData = localStorage.getItem('resume-store');
     if (savedData) {
-      setStore(JSON.parse(savedData));
+      try {
+        const parsedStore = JSON.parse(savedData);
+        setStore(parsedStore);
+
+        // Find the active version inside the saved store
+        const activeVersion = parsedStore.versions.find(
+          (v: ResumeVersion) => v.id === parsedStore.activeId
+        );
+
+        // If we found the active version, update the displayed data
+        if (activeVersion) {
+          setData(activeVersion.data);
+        }
+      } catch (err) {
+        console.error("Failed to parse saved resume data", err);
+      }
     }
   }, []);
-
   // Keep the active version's data in sync as the user edits
   const handleDataChange = useCallback((newData: ResumeData) => {
     setData(newData);

@@ -39,7 +39,8 @@ function App() {
   // Keep the active version's data in sync as the user edits
   const handleDataChange = useCallback((newData: ResumeData) => {
     setData(newData);
-    setStore(prev => ({
+    // Correct syntax: (prev: VersionsStore)
+    setStore((prev: VersionsStore) => ({
       ...prev,
       versions: prev.versions.map(v =>
         v.id === prev.activeId ? { ...v, data: newData } : v

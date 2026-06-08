@@ -34,6 +34,18 @@ export interface ResumeData {
   education: Education[];
 }
 
+export interface ResumeVersion {
+  id: string;
+  name: string;
+  createdAt: string;
+  data: ResumeData;
+}
+
+export interface VersionsStore {
+  activeId: string;
+  versions: ResumeVersion[];
+}
+
 export const resumeData: ResumeData = {
   "personalInfo": {
     "name": "Bill Mulleckers",

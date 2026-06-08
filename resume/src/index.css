@@ -1378,8 +1378,13 @@ strong {
 }
 
 @keyframes vm-fade-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 /* Modal */
@@ -1398,8 +1403,15 @@ strong {
 }
 
 @keyframes vm-slide-up {
-  from { opacity: 0; transform: translateY(20px) scale(0.97); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .vm-modal-header {
@@ -1451,8 +1463,13 @@ strong {
   white-space: nowrap;
 }
 
-.vm-btn-new:hover { filter: brightness(1.15); }
-.vm-btn-new:active { transform: scale(0.96); }
+.vm-btn-new:hover {
+  filter: brightness(1.15);
+}
+
+.vm-btn-new:active {
+  transform: scale(0.96);
+}
 
 .vm-new-input-row {
   display: flex;
@@ -1499,7 +1516,10 @@ strong {
   border-radius: 4px;
 }
 
-.vm-btn-cancel:hover { background: rgba(255,255,255,0.06); color: #fff; }
+.vm-btn-cancel:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
 
 .vm-close-btn {
   background: transparent;
@@ -1513,7 +1533,10 @@ strong {
   transition: background 0.15s, color 0.15s;
 }
 
-.vm-close-btn:hover { background: rgba(255,255,255,0.07); color: #fff; }
+.vm-close-btn:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+}
 
 /* Toast inside modal */
 .vm-toast {
@@ -1546,10 +1569,22 @@ strong {
   flex: 1;
 }
 
-.vm-grid::-webkit-scrollbar { width: 8px; }
-.vm-grid::-webkit-scrollbar-track { background: transparent; }
-.vm-grid::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 9999px; }
-.vm-grid::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+.vm-grid::-webkit-scrollbar {
+  width: 8px;
+}
+
+.vm-grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.vm-grid::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+}
+
+.vm-grid::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
 
 /* Version Card */
 .vm-card {
@@ -1605,7 +1640,7 @@ strong {
 }
 
 .vm-rename-input {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
   border: 1px solid #818cf8;
   border-radius: 4px;
   padding: 4px 8px;
@@ -1653,7 +1688,7 @@ strong {
 /* Card actions row */
 .vm-card-actions {
   padding: 12px 16px;
-  border-top: 1px solid rgba(255,255,255,0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -1671,7 +1706,9 @@ strong {
   line-height: 1;
 }
 
-.vm-action-btn:active { transform: scale(0.94); }
+.vm-action-btn:active {
+  transform: scale(0.94);
+}
 
 /* "Switch to this" — fills remaining space, uses version colour */
 .vm-action-switch {
@@ -1687,14 +1724,17 @@ strong {
 
 /* Ghost icon buttons (rename, duplicate) */
 .vm-action-ghost {
-  background: rgba(255,255,255,0.04);
+  background: rgba(255, 255, 255, 0.04);
   color: #94a3b8;
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   font-size: 14px;
   padding: 6px 9px;
 }
 
-.vm-action-ghost:hover { background: rgba(255,255,255,0.1); color: #e2e8f0; }
+.vm-action-ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+}
 
 /* Delete button */
 .vm-action-delete {
@@ -1716,6 +1756,7 @@ strong {
 
 /* Hide in print */
 @media print {
+
   .vm-backdrop,
   .btn-versions-toggle {
     display: none !important;

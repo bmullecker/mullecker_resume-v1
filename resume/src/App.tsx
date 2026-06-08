@@ -25,10 +25,14 @@ function App() {
   useEffect(() => {
     const savedStore = localStorage.getItem('resume-store');
     if (savedStore) {
-      const parsedStore = JSON.parse(savedStore);
-      setStore(parsedStore);
-      const active = parsedStore.versions.find((v: ResumeVersion) => v.id === parsedStore.activeId);
-      if (active) setData(active.data);
+      try {
+        const parsedStore = JSON.parse(savedStore);
+        setStore(parsedStore);
+        const active = parsedStore.versions.find((v: ResumeVersion) => v.id === parsedStore.activeId);
+        if (active) setData(active.data);
+      } catch (e) {
+        console.error("Failed to parse store", e);
+      }
     }
     setLoaded(true);
   }, []);

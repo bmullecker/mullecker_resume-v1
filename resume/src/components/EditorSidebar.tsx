@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, Dispatch, SetStateAction } from 'react'; // 1. Add these
 import type { ResumeData, SkillCategory, Experience, Education, VersionsStore } from '../data';
 
 interface EditorSidebarProps {
@@ -7,10 +7,11 @@ interface EditorSidebarProps {
   isOpen: boolean;
   onClose: () => void;
   store: VersionsStore;
-  // onStoreChange: (newStore: VersionsStore) => void;
+  // 2. Update this type to match React's setter
+  onStoreChange: Dispatch<SetStateAction<VersionsStore>>;
 }
 
-export default function EditorSidebar({ data, onChange, isOpen, onClose, store }: EditorSidebarProps) {
+export default function EditorSidebar({ data, onChange, isOpen, onClose, store, onStoreChange }: EditorSidebarProps) {
   const [activeSection, setActiveSection] = useState<string | null>('personal');
   const [saving, setSaving] = useState(false);
   const [status, setStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);

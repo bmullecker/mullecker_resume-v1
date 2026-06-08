@@ -48,7 +48,7 @@ export interface VersionsStore {
 
 export const resumeData: ResumeData = {
   "personalInfo": {
-    "name": "Bill Mulleckers",
+    "name": "Bill Mullecker",
     "title": "Senior Front-End Developer",
     "location": "York, PA",
     "phone": "570-573-6459",

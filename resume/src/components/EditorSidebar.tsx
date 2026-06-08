@@ -1,14 +1,16 @@
 import { useState } from 'react';
-import type { ResumeData, SkillCategory, Experience, Education } from '../data';
+import type { ResumeData, SkillCategory, Experience, Education, VersionsStore } from '../data';
 
 interface EditorSidebarProps {
   data: ResumeData;
   onChange: (newData: ResumeData) => void;
   isOpen: boolean;
   onClose: () => void;
+  store: VersionsStore;
+  onStoreChange: (newStore: VersionsStore) => void;
 }
 
-export default function EditorSidebar({ data, onChange, isOpen, onClose }: EditorSidebarProps) {
+export default function EditorSidebar({ data, onChange, isOpen, onClose, store, onStoreChange }: EditorSidebarProps) {
   const [activeSection, setActiveSection] = useState<string | null>('personal');
   const [saving, setSaving] = useState(false);
   const [status, setStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
@@ -21,16 +23,16 @@ export default function EditorSidebar({ data, onChange, isOpen, onClose }: Edito
     setSaving(true);
     setStatus(null);
     try {
-      const response = await fetch('/api/save-resume', {
+      const response = await fetch('/api/versions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(store),
       });
       const result = await response.json();
       if (result.success) {
-        setStatus({ type: 'success', message: 'Saved to data.ts!' });
+        setStatus({ type: 'success', message: 'Saved to versions.json!' });
         setTimeout(() => setStatus(null), 4000);
       } else {
         throw new Error(result.error || 'Unknown server error');
@@ -242,7 +244,7 @@ export default function EditorSidebar({ data, onChange, isOpen, onClose }: Edito
             onClick={handleSave}
             disabled={saving}
           >
-            {saving ? 'Saving...' : 'Save to data.ts'}
+            {saving ? 'Saving...' : 'Save Version'}
           </button>
           <button className="btn-editor-close" onClick={onClose}>
             &times;

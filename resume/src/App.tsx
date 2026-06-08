@@ -93,6 +93,8 @@ function App() {
         onChange={handleDataChange}
         isOpen={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
+        store={store}
+        onStoreChange={setStore}
       />
 
       <div id="resume-content" className="resume-wrapper">

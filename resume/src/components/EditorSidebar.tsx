@@ -23,23 +23,14 @@ export default function EditorSidebar({ data, onChange, isOpen, onClose, store, 
     setSaving(true);
     setStatus(null);
     try {
-      const response = await fetch('/api/versions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(store),
-      });
-      const result = await response.json();
-      if (result.success) {
-        setStatus({ type: 'success', message: 'Saved to versions.json!' });
-        setTimeout(() => setStatus(null), 4000);
-      } else {
-        throw new Error(result.error || 'Unknown server error');
-      }
+      // Save the store to localStorage
+      localStorage.setItem('resume-store', JSON.stringify(store));
+
+      setStatus({ type: 'success', message: 'Saved to browser storage!' });
+      setTimeout(() => setStatus(null), 4000);
     } catch (error: any) {
       console.error(error);
-      setStatus({ type: 'error', message: error.message || 'Failed to save' });
+      setStatus({ type: 'error', message: 'Failed to save to storage' });
     } finally {
       setSaving(false);
     }

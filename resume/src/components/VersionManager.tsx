@@ -59,16 +59,11 @@ export default function VersionManager({
   const persistStore = async (newStore: VersionsStore) => {
     setSaving(true);
     try {
-      const res = await fetch('/api/versions', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newStore),
-      });
-      const result = await res.json();
-      if (!result.success) throw new Error(result.error);
+      // Save directly to localStorage
+      localStorage.setItem('resume-store', JSON.stringify(newStore));
       showToast('success', 'Saved');
     } catch (e: any) {
-      showToast('error', e.message || 'Save failed');
+      showToast('error', 'Save failed');
     } finally {
       setSaving(false);
     }

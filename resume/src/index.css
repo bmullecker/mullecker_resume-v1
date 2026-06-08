@@ -1,18 +1,43 @@
-@import "tailwindcss";
-
-@theme {
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+/* Reset & Base Variables */
+:root {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --color-bg-body: #f9fafb;
+  --color-bg-resume: #ffffff;
+  --color-text-main: #374151;
+  --color-text-secondary: #374151;
+  --color-text-muted: #6b7280;
+  --color-gray-800: #1f2937;
+  --border-color: #f3f4f6;
+  --selection-bg: #000000;
+  --selection-text: #ffffff;
 }
 
-@layer base {
-  body {
-    @apply bg-gray-50 text-gray-900 text-pretty;
-  }
+* {
+  box-sizing: border-box;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg-body);
+  color: var(--color-text-main);
+  font-family: var(--font-sans);
+  text-wrap: pretty;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Text Selection */
+::selection {
+  background-color: var(--selection-bg);
+  color: var(--selection-text);
+}
+
+/* Base Print Setup (Page Margins & Structure Setup) */
 @media print {
   @page {
-    margin: 0.53in;
+    margin: 0.5in;
+    /* 0.5 inch margins as requested */
     size: auto;
   }
 
@@ -21,10 +46,47 @@
     print-color-adjust: exact;
     orphans: 2;
     widows: 2;
-    @apply bg-white;
+    background-color: #ffffff !important;
+  }
+
+  /* Structural Resets for standard letter layout printing */
+  .app-container {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    background-color: #ffffff !important;
+  }
+
+  .resume-wrapper {
+    box-shadow: none !important;
+    max-width: 100% !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  .action-toolbar,
+  .btn-jazzify {
+    display: none !important;
   }
 }
 
+/* Consolidated Pill Class */
+.pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background-color: #EAEAEA;
+  border: 1px solid #e9ecef;
+  padding: 2px 9px;
+  margin: 0px 2px 2px 0px;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #374151;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Glitch Animations & Hacking Classes */
 @keyframes glitch {
   0% {
     transform: translate(0)
@@ -101,4 +163,1561 @@
 
 .animate-runner {
   animation: runner-move 6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: .5;
+  }
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+/* ==========================================================================
+   Component-Based Semantic Styles (Standard Layout Matched 1:1 to Print Settings)
+   ========================================================================= */
+
+/* 1. App Layout Component Styles (App.tsx) */
+.app-container {
+  min-height: 100vh;
+  background-color: var(--color-bg-body);
+  padding-top: 40px;
+  padding-bottom: 40px;
+  color: var(--color-text-main);
+}
+
+/* @media print {
+  .app-container {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    background-color: #ffffff !important;
+  }
+} */
+
+.action-toolbar {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 9999;
+}
+
+@media (min-width: 640px) {
+  .action-toolbar {
+    flex-direction: row;
+  }
+}
+
+/* @media print {
+  .action-toolbar {
+    display: none !important;
+  }
+} */
+
+.btn-print {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  font-weight: 700;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: none;
+  cursor: pointer;
+  pointer-events: auto !important;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-print:hover {
+  background-color: #1f2937;
+}
+
+.btn-print:active {
+  transform: scale(0.95);
+}
+
+.resume-wrapper {
+  max-width: 816px;
+  /* unified 8.5in width */
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--color-bg-resume);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border: 1px solid #f3f4f6;
+  padding: 0.5in;
+  /* exactly 0.5in top/bottom/sides */
+}
+
+/* @media print {
+  .resume-wrapper {
+    box-shadow: none !important;
+    max-width: 100% !important;
+    border: none !important;
+    padding: 0 !important;
+    font-size: 14px !important;
+  }
+} */
+
+/* 2. Header Component Styles (Header.tsx) */
+.header-container {
+  margin-bottom: 20px;
+  display: block;
+}
+
+/* @media print {
+  .header-container {
+    margin-bottom: 24px !important;
+  }
+} */
+
+.header-name {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  margin: 0 0 6px 0;
+}
+
+/* @media print {
+  .header-name {
+    font-size: 30px !important;
+  }
+} */
+
+.header-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  line-height: 1.25;
+  margin: -10px 0 20px 0;
+}
+
+/* @media print {
+  .header-title {
+    font-size: 18px !important;
+  }
+} */
+
+.header-contact-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  font-size: 12px;
+  line-height: 1;
+}
+
+/* @media print {
+  .header-contact-info {
+    border: none !important;
+  }
+} */
+
+/* 3. Experience Component Styles (Experience.tsx) */
+.experience-section {
+  margin-bottom: 8px;
+  text-wrap: pretty;
+}
+
+/* @media print {
+  .experience-section {
+    margin-bottom: 8px !important;
+  }
+} */
+
+.section-heading {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #7885c5;
+  border-bottom: 1px solid #7885c5;
+  display: inline-block;
+  padding: 0px 0px 5px 0px;
+  margin: 0px 0 10px 0;
+  margin-top: 0 !important;
+}
+
+/* @media print {
+  .section-heading {
+    margin-bottom: 8px !important;
+    border-bottom: 1px solid #374151;
+  }
+} */
+
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* @media print {
+  .experience-list {
+    gap: 8px !important;
+    print:space-y-2
+  }
+} */
+
+.experience-item {
+  break-inside: avoid;
+  margin-bottom: 8px;
+}
+
+.experience-item:last-of-type {
+  margin-bottom: 0;
+}
+
+/* @media print {
+  .experience-item {
+    margin-bottom: 8px !important;
+  }
+} */
+
+.experience-table {
+  width: 100%;
+  margin-bottom: 4px;
+  border-collapse: collapse;
+  border: none;
+  border-spacing: 0;
+}
+
+/* @media print {
+  .experience-table {
+    margin-bottom: 4px !important;
+    print:mb-1
+  }
+} */
+
+.job-role-cell {
+  vertical-align: baseline;
+  text-align: left;
+  padding: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.job-date-cell {
+  vertical-align: baseline;
+  text-align: right;
+  width: 128px;
+  padding: 0;
+  white-space: nowrap;
+}
+
+.job-role-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #374151;
+  display: inline;
+  margin: 0;
+}
+
+/* @media print {
+  .job-role-title {
+    font-size: 16px !important;
+    print:text-base
+  }
+} */
+
+.job-company {
+  font-weight: 500;
+  color: #6b7280;
+  font-style: italic;
+  text-wrap: pretty;
+}
+
+.job-date {
+  font-size: 12px;
+  font-weight: 400;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.responsibility-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: #374151;
+  font-size: 12px;
+}
+
+/* @media print {
+  .responsibility-list {
+    font-size: 12px !important;
+    print:text-xs
+  }
+} */
+
+.responsibility-item {
+  display: flex;
+  gap: 8px;
+  line-height: 1.5;
+}
+
+.bullet-point {
+  flex-shrink: 0;
+  color: #374151;
+  font-weight: 700;
+}
+
+/* 4. Skills Component Styles (Skills.tsx) */
+.skills-section {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* @media print {
+  .skills-section {
+    margin-top: 24px !important;
+    margin-bottom: 24px !important;
+  }
+} */
+
+.skills-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.skills-row {
+  vertical-align: top;
+}
+
+.skills-category-cell {
+  width: 120px;
+  text-align: left;
+  font-weight: 700;
+  padding: 5px 8px 2px 0;
+  color: #374151;
+  line-height: 1.25;
+  vertical-align: baseline;
+  white-space: nowrap;
+  font-size: 14px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.skills-items-cell {
+  padding: 2px 0;
+}
+
+.skills-items-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+/* 5. Education Component Styles (Education.tsx) */
+.education-section {
+  break-inside: avoid;
+}
+
+.education-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* @media print {
+  .education-list {
+    gap: 8px !important;
+    print:space-y-2
+  }
+} */
+
+.education-table {
+  width: 100%;
+  margin-bottom: 8px;
+  border-collapse: collapse;
+  border: none;
+  border-spacing: 0;
+}
+
+/* @media print {
+  .education-table {
+    margin-bottom: 8px !important;
+    print:mb-2
+  }
+} */
+
+.degree-cell {
+  vertical-align: baseline;
+  text-align: left;
+  padding: 0;
+}
+
+.year-cell {
+  vertical-align: baseline;
+  text-align: right;
+  width: 128px;
+  padding: 0;
+  white-space: nowrap;
+}
+
+.degree-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #374151;
+  display: inline;
+  margin: 0;
+}
+
+/* @media print {
+  .degree-title {
+    font-size: 14px !important;
+    print:text-sm
+  }
+} */
+
+.school-name {
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 400;
+  margin-top: 2px;
+}
+
+/* @media print {
+  .school-name {
+    font-size: 12px !important;
+    print:text-xs
+  }
+} */
+
+.education-year {
+  font-size: 12px;
+  font-weight: 400;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+/* 6. Summary Component Styles (Summary.tsx - Standby) */
+.summary-section {
+  margin-bottom: 24px;
+}
+
+/* @media print {
+  .summary-section {
+    margin-bottom: 24px !important;
+  }
+} */
+
+.summary-text {
+  color: #374151;
+  font-size: 12px;
+  line-height: 1.625;
+  margin: 0;
+}
+
+/* @media print {
+  .summary-text {
+    font-size: 12px !important;
+    print:text-xs
+  }
+} */
+
+/* 7. Jazzify Component Styles (Jazzify.tsx) */
+.btn-jazzify {
+  background-color: #9333ea;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  font-weight: 700;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border: 2px solid #c084fc;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  display: none !important;
+}
+
+.btn-jazzify:hover {
+  background-color: #7e22ce;
+}
+
+/* @media print {
+  .btn-jazzify {
+    display: none !important;
+  }
+} */
+
+.jazzify-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.hacking-screen {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #050a05;
+  display: flex;
+  overflow: hidden;
+}
+
+.hacking-sidebar {
+  width: 64px;
+  flex-shrink: 0;
+  border-right: 4px solid #22c55e;
+  background-color: #000000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 20;
+}
+
+@media (min-width: 768px) {
+  .hacking-sidebar {
+    width: 96px;
+  }
+}
+
+.hacking-sidebar-text {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+  color: #22c55e;
+  font-size: 20px;
+  font-weight: 900;
+  white-space: nowrap;
+  letter-spacing: 0.5em;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+@media (min-width: 768px) {
+  .hacking-sidebar-text {
+    font-size: 30px;
+  }
+}
+
+.hacking-main {
+  flex: 1 1 0%;
+  position: relative;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .hacking-main {
+    padding: 64px;
+  }
+}
+
+.runner-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  overflow: hidden;
+  transition: opacity 0.15s ease-in-out;
+}
+
+.runner-overlay.show {
+  opacity: 0.8;
+}
+
+.runner-overlay.hide {
+  opacity: 0;
+}
+
+.runner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: runner-move 6s ease-in-out infinite;
+}
+
+.hacking-logs-container {
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 20;
+  position: relative;
+  margin-bottom: 32px;
+  filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04)) drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));
+}
+
+@media (min-width: 768px) {
+  .hacking-logs-container {
+    font-size: 30px;
+  }
+}
+
+.glitch-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.glitch-note {
+  position: absolute;
+  font-size: 48px;
+  animation: bounce infinite;
+}
+
+@media (min-width: 640px) {
+  .glitch-note {
+    font-size: 72px;
+  }
+}
+
+.glitch-blend {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #6366f1;
+  mix-blend-mode: color-burn;
+  opacity: 0.4;
+  pointer-events: none;
+  animation: pulse 0.1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.error-screen {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #7f1d1d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  text-align: center;
+  pointer-events: auto;
+}
+
+.error-dialog {
+  border: 4px solid #ef4444;
+  background-color: #000000;
+  padding: 32px;
+  max-width: 896px;
+  box-shadow: 0 0 80px rgba(255, 0, 0, 0.8);
+  z-index: 10;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .error-dialog {
+    padding: 64px;
+  }
+}
+
+.error-heading {
+  color: #ef4444;
+  font-size: 48px;
+  font-weight: 900;
+  margin-bottom: 32px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@media (min-width: 768px) {
+  .error-heading {
+    font-size: 72px;
+  }
+}
+
+.error-text {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 700;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .error-text {
+    font-size: 36px;
+  }
+}
+
+.btn-accept {
+  margin-top: 64px;
+  background-color: #dc2626;
+  border: 2px solid #f87171;
+  color: #ffffff;
+  padding: 20px 40px;
+  font-weight: 700;
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn-accept:hover {
+  background-color: #ef4444;
+}
+
+strong {
+  color: #70aec1;
+  color: #7885c5;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Editor Sidebar Styling (Interactive GUI Panel)
+   ========================================================================= */
+
+.editor-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 480px;
+  height: 100vh;
+  background: rgba(18, 20, 24, 0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+  z-index: 9000;
+  display: flex;
+  flex-direction: column;
+  color: #e5e7eb;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: var(--font-sans);
+  z-index: 9999;
+}
+
+.editor-sidebar.closed {
+  transform: translateX(100%);
+}
+
+.editor-sidebar.open {
+  transform: translateX(0);
+}
+
+.editor-header {
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(24, 26, 32, 0.95);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.editor-header-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.025em;
+}
+
+.editor-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-editor-close {
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.btn-editor-close:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.editor-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Custom Scrollbar for Sidebar */
+.editor-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.editor-body::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.editor-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+}
+
+.editor-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.editor-section {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  overflow: hidden;
+  transition: border-color 0.15s;
+  min-height: 50px;
+}
+
+.editor-section::after {
+  content: '';
+  display: block;
+  height: auto;
+  margin-bottom: -10px;
+  /* Adjust this value to ensure space for the scrollbar */
+  visibility: hidden;
+  /* Make sure this pseudo-element does not affect layout */
+}
+
+/* Hide default scrollbar */
+.editor-section::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari and Opera */
+}
+
+.editor-section {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+/* Show scrollbar if content exceeds container height */
+.editor-section:hover,
+.editor-section:focus-within {
+  overflow-y: scroll;
+}
+
+.editor-section:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.editor-section-header {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border: none;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  min-height: 50px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.editor-section-header:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.editor-section-content {
+  padding: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  /* Make this content scrollable */
+  max-height: 70vh;
+  /* Adjust this to fit your layout needs */
+  overscroll-behavior-y: contain;
+}
+
+/* Form Fields */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.form-input,
+.form-textarea {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: #ffffff;
+  font-size: 13px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  width: 100%;
+  font-family: var(--font-sans);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #818cf8;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.15);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Repeating items list (bullet points, experiences, skills) */
+.list-editor-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.list-editor-item {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.list-editor-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #818cf8;
+}
+
+.btn-remove-item {
+  background: transparent;
+  border: none;
+  color: #ef4444;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: background-color 0.15s;
+}
+
+.btn-remove-item:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+/* Buttons */
+.btn-save {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.1s;
+}
+
+.btn-save:hover {
+  filter: brightness(1.1);
+}
+
+.btn-save:active {
+  transform: scale(0.97);
+}
+
+.btn-save:disabled {
+  background: #4b5563;
+  color: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+  filter: none;
+}
+
+.btn-add-item {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  color: #e5e7eb;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.btn-add-item:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-edit-toggle {
+  background-color: #1f2937;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  font-weight: 700;
+  border: 2px solid #374151;
+  cursor: pointer;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.btn-edit-toggle:hover {
+  background-color: #374151;
+  border-color: #4b5563;
+}
+
+.btn-edit-toggle:active {
+  transform: scale(0.95);
+}
+
+.bullet-manager-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.btn-bullet-delete {
+  background: transparent;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px 8px;
+  line-height: 1;
+}
+
+.btn-bullet-delete:hover {
+  background: rgba(239, 68, 68, 0.1);
+  border-radius: 4px;
+}
+
+.toast-message {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+.toast-message.success {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.toast-message.error {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+/* Hide editor triggers and panel in print mode */
+@media print {
+
+  .editor-sidebar,
+  .btn-edit-toggle {
+    display: none !important;
+  }
+}
+
+/* Hide default scrollbar */
+.form-input,
+.form-textarea {
+  overflow-y: scroll;
+}
+
+.form-input::-webkit-scrollbar,
+.form-textarea::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari and Opera */
+}
+
+.form-input,
+.form-textarea {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+/* Custom scrollbar for textarea */
+.form-input::-webkit-scrollbar-track,
+.form-textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.form-input::-webkit-scrollbar-thumb,
+.form-textarea::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  /* Transparent white dot */
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.form-input::-webkit-scrollbar-thumb:hover,
+.form-textarea::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+  /* Slightly more opaque when hovered */
+}
+
+/* ==========================================================================
+   Version Manager Styles
+   ========================================================================= */
+
+.btn-versions-toggle {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  color: #a5b4fc;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  font-weight: 700;
+  border: 2px solid #334155;
+  cursor: pointer;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.01em;
+}
+
+.btn-versions-toggle:hover {
+  background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+  border-color: #6366f1;
+  color: #c7d2fe;
+}
+
+.btn-versions-toggle:active {
+  transform: scale(0.95);
+}
+
+/* Backdrop */
+.vm-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 9500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: vm-fade-in 0.2s ease;
+}
+
+@keyframes vm-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Modal */
+.vm-modal {
+  background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.7);
+  width: 100%;
+  max-width: 780px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: vm-slide-up 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes vm-slide-up {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.vm-modal-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.vm-modal-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.vm-icon {
+  font-size: 22px;
+  opacity: 0.7;
+}
+
+.vm-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #f1f5f9;
+  letter-spacing: -0.025em;
+}
+
+.vm-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.vm-btn-new {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.1s;
+  white-space: nowrap;
+}
+
+.vm-btn-new:hover { filter: brightness(1.15); }
+.vm-btn-new:active { transform: scale(0.96); }
+
+.vm-new-input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vm-new-input {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: #fff;
+  font-size: 13px;
+  font-family: var(--font-sans);
+  outline: none;
+  width: 180px;
+  transition: border-color 0.15s;
+}
+
+.vm-new-input:focus {
+  border-color: #818cf8;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
+}
+
+.vm-btn-create {
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.vm-btn-cancel {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.vm-btn-cancel:hover { background: rgba(255,255,255,0.06); color: #fff; }
+
+.vm-close-btn {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 6px;
+  line-height: 1;
+  transition: background 0.15s, color 0.15s;
+}
+
+.vm-close-btn:hover { background: rgba(255,255,255,0.07); color: #fff; }
+
+/* Toast inside modal */
+.vm-toast {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 20px;
+  animation: vm-fade-in 0.2s ease;
+}
+
+.vm-toast.success {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.vm-toast.error {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+/* Version Grid */
+.vm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.vm-grid::-webkit-scrollbar { width: 8px; }
+.vm-grid::-webkit-scrollbar-track { background: transparent; }
+.vm-grid::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 9999px; }
+.vm-grid::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+/* Version Card */
+.vm-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+  position: relative;
+}
+
+.vm-card:hover {
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.vm-card.active {
+  border-color: var(--version-color, #6366f1);
+  box-shadow: 0 0 0 1px var(--version-color, #6366f1), 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Coloured top-accent stripe */
+.vm-card-accent {
+  height: 4px;
+  flex-shrink: 0;
+}
+
+.vm-card-body {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.vm-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.vm-card-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #f1f5f9;
+  cursor: pointer;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.vm-rename-input {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid #818cf8;
+  border-radius: 4px;
+  padding: 4px 8px;
+  color: #fff;
+  font-size: 14px;
+  font-family: var(--font-sans);
+  outline: none;
+  width: 100%;
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
+}
+
+.vm-active-badge {
+  background: var(--version-color, #6366f1);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+  text-transform: uppercase;
+}
+
+.vm-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.vm-card-preview {
+  font-size: 12px;
+  color: #64748b;
+  font-style: italic;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vm-card-date {
+  font-size: 11px;
+  color: #475569;
+}
+
+/* Card actions row */
+.vm-card-actions {
+  padding: 12px 16px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.vm-action-btn {
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 10px;
+  transition: background 0.15s, transform 0.1s;
+  font-family: var(--font-sans);
+  line-height: 1;
+}
+
+.vm-action-btn:active { transform: scale(0.94); }
+
+/* "Switch to this" — fills remaining space, uses version colour */
+.vm-action-switch {
+  flex: 1;
+  background: color-mix(in srgb, var(--action-color, #6366f1) 15%, transparent);
+  color: var(--action-color, #818cf8);
+  border: 1px solid color-mix(in srgb, var(--action-color, #6366f1) 30%, transparent);
+}
+
+.vm-action-switch:hover {
+  background: color-mix(in srgb, var(--action-color, #6366f1) 28%, transparent);
+}
+
+/* Ghost icon buttons (rename, duplicate) */
+.vm-action-ghost {
+  background: rgba(255,255,255,0.04);
+  color: #94a3b8;
+  border: 1px solid rgba(255,255,255,0.08);
+  font-size: 14px;
+  padding: 6px 9px;
+}
+
+.vm-action-ghost:hover { background: rgba(255,255,255,0.1); color: #e2e8f0; }
+
+/* Delete button */
+.vm-action-delete {
+  background: transparent;
+  color: #475569;
+  font-size: 14px;
+  padding: 6px 9px;
+}
+
+.vm-action-delete:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+}
+
+.vm-action-delete:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Hide in print */
+@media print {
+  .vm-backdrop,
+  .btn-versions-toggle {
+    display: none !important;
+  }
 }

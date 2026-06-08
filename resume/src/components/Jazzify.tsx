@@ -129,7 +129,7 @@ export default function Jazzify() {
         return (
             <button
                 onClick={startJazzify}
-                className="bg-purple-600 text-white px-6 py-3 rounded-full font-bold shadow-lg hover:bg-purple-700 transition-colors animate-pulse print:hidden border-2 border-purple-400"
+                className="btn-jazzify"
             >
                 Jazzify My Resume (Don't Click)
             </button>
@@ -137,13 +137,13 @@ export default function Jazzify() {
     }
 
     return (
-        <div className="fixed inset-0 z-[9999] pointer-events-none">
+        <div className="jazzify-overlay">
             {stage === 'hacking' && (
-                <div className="absolute inset-0 marathon-bg flex overflow-hidden">
+                <div className="hacking-screen">
                     {/* Sidebar */}
-                    <div className="w-16 md:w-24 shrink-0 border-r-4 border-green-500 bg-black flex flex-col items-center justify-center relative overflow-hidden z-20">
-                        <div className="absolute inset-0 scanlines opacity-80 pointer-events-none"></div>
-                        <div className="marathon-sidebar-text text-green-500 font-mono text-xl md:text-3xl font-black whitespace-nowrap tracking-[0.5em] animate-scroll-y py-4 flex flex-col gap-10">
+                    <div className="hacking-sidebar">
+                        <div className="absolute inset-0 scanlines pointer-events-none" style={{ opacity: 0.8 }}></div>
+                        <div className="hacking-sidebar-text animate-scroll-y">
                             <span style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>TERMINAL OVERRIDE _ </span>
                             <span style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>SYSTEM FAILURE _ </span>
                             <span style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>JAZZIFYING RESUME _ </span>
@@ -151,23 +151,23 @@ export default function Jazzify() {
                     </div>
 
                     {/* Main Hacking Area */}
-                    <div className="flex-1 relative p-8 sm:p-16 flex flex-col justify-end overflow-hidden">
-                        <div className="absolute inset-0 scanlines opacity-60"></div>
-                        <div className="absolute inset-0 bg-green-900 mix-blend-overlay opacity-20"></div>
+                    <div className="hacking-main">
+                        <div className="absolute inset-0 scanlines" style={{ opacity: 0.6 }}></div>
+                        <div className="absolute inset-0 bg-green-900" style={{ mixBlendMode: 'overlay', opacity: 0.2 }}></div>
 
                         {/* Flashing Moving Runner */}
-                        <div className={`absolute inset-0 z-15 flex items-center justify-center mix-blend-screen pointer-events-none overflow-hidden ${showRunner ? 'opacity-80' : 'opacity-0'}`}>
+                        <div className={`runner-overlay ${showRunner ? 'show' : 'hide'}`}>
                             <img
                                 src="/runner.jpg"
                                 alt="Marathon Runner"
-                                className="w-full h-full object-cover animate-runner"
+                                className="runner-image"
                                 style={{
                                     filter: 'hue-rotate(80deg) saturate(200%) contrast(150%) brightness(1.2)'
                                 }}
                             />
                         </div>
 
-                        <div className="marathon-text text-xl md:text-3xl flex flex-col gap-4 z-20 relative mb-8 drop-shadow-lg">
+                        <div className="marathon-text hacking-logs-container">
                             {hackingLogs.map((log, i) => (
                                 <div key={i} className="animate-pulse" style={{ animationDuration: '0.4s' }}>{log}</div>
                             ))}
@@ -178,11 +178,11 @@ export default function Jazzify() {
             )}
 
             {stage === 'glitch' && (
-                <div className="absolute inset-0 overflow-hidden">
+                <div className="glitch-overlay">
                     {Array.from({ length: 80 }).map((_, i) => (
                         <div
                             key={i}
-                            className="absolute text-5xl sm:text-7xl animate-bounce"
+                            className="glitch-note"
                             style={{
                                 left: `${Math.random() * 100}%`,
                                 top: `${Math.random() * 100}%`,
@@ -193,22 +193,22 @@ export default function Jazzify() {
                             {Math.random() > 0.3 ? '🎺' : '🎶'}
                         </div>
                     ))}
-                    <div className="absolute inset-0 bg-indigo-500 mix-blend-color-burn opacity-40 animate-pulse pointer-events-none" style={{ animationDuration: '0.1s' }}></div>
+                    <div className="glitch-blend"></div>
                 </div>
             )}
 
             {stage === 'error' && (
-                <div className="absolute inset-0 bg-red-900 flex items-center justify-center p-8 text-center pointer-events-auto">
-                    <div className="absolute inset-0 scanlines opacity-50 pointer-events-none"></div>
-                    <div className="border-4 border-red-500 bg-black p-8 md:p-16 max-w-4xl shadow-[0_0_80px_rgba(255,0,0,0.8)] z-10 relative">
-                        <h1 className="text-red-500 text-5xl md:text-7xl font-black mb-8 uppercase tracking-widest animate-pulse" style={{ textShadow: '0 0 20px red' }}>
+                <div className="error-screen">
+                    <div className="absolute inset-0 scanlines pointer-events-none" style={{ opacity: 0.5 }}></div>
+                    <div className="error-dialog">
+                        <h1 className="error-heading" style={{ textShadow: '0 0 20px red' }}>
                             CRITICAL SYSTEM FAILURE
                         </h1>
-                        <p className="text-white text-2xl md:text-4xl font-bold font-mono uppercase">
+                        <p className="error-text">
                             WARNING: APPLIED TO ALL AVAILABLE JOBS ON LINKEDIN AND INDEED
                         </p>
                         <button
-                            className="mt-16 bg-red-600 border-2 border-red-400 text-white px-10 py-5 font-bold text-2xl uppercase tracking-wider hover:bg-red-500 transition-colors shadow-[0_0_20px_rgba(255,0,0,0.5)] cursor-pointer"
+                            className="btn-accept"
                             onClick={() => window.location.reload()}
                         >
                             ACCEPT FATE

@@ -1,5 +1,6 @@
 export interface PersonalInfo {
   name: string;
+  title: string;
   location: string;
   phone: string;
   email: string;
@@ -34,87 +35,126 @@ export interface ResumeData {
 }
 
 export const resumeData: ResumeData = {
-  personalInfo: {
-    name: "William Mullecker",
-    location: "York, PA",
-    phone: "570-573-6459",
-    email: "bmullecker@gmail.com",
-    linkedin: "linkedin.com/in/bmullecker",
+  "personalInfo": {
+    "name": "Bill Mullecker",
+    "title": "UI/UX Designer",
+    "location": "York, PA",
+    "phone": "570-573-6459",
+    "email": "bmullecker@gmail.com",
+    "linkedin": "linkedin.com/in/bmullecker"
   },
-  summary: "Senior Front-End Developer & UI/UX Designer with over <strong>13</strong> years of experience bridging the gap between high-fidelity design and scalable implementation. A rare hybrid of creative vision and technical precision specializing in building responsive, high-performance web interfaces that drive measurable business growth. Expert in accessibility, performance optimization, and custom CMS integrations for enterprise and SaaS environments.",
-  skills: [
+  "summary": "Senior Front-End Developer & UI/UX Designer with over <strong>13</strong> years of experience bridging the gap between high-fidelity design and scalable implementation. A rare hybrid of creative vision and technical precision specializing in building responsive, high-performance web interfaces that drive measurable business growth. Expert in accessibility, performance optimization, and custom CMS integrations for enterprise and SaaS environments.",
+  "skills": [
     {
-      category: "Front-End",
-      items: ["• HTML5", "• CSS3 (SASS/LESS)", "• Tailwind", "• JavaScript (ES6+)", "• React"],
+      "category": "Front-End",
+      "items": [
+        "HTML5",
+        "CSS3",
+        "JavaScript (ES6+)",
+        "React",
+        "Tailwind",
+        "Bootstrap"
+      ]
     },
     {
-      category: "Back-End & CMS",
-      items: ["• WordPress", "• Shopify", "• PHP", "• MySQL", "• Laravel (MVC)"],
+      "category": "Back-End",
+      "items": [
+        "PHP",
+        ".NET",
+        "MySQL",
+        "WordPress",
+        "Shopify",
+        "Laravel (MVC)",
+        "API Integrations"
+      ]
     },
     {
-      category: "Design",
-      items: ["• UI/UX Design", "• Figma", "• Adobe Creative Cloud"],
+      "category": "Design",
+      "items": [
+        "UI/UX Design",
+        "Figma",
+        "Adobe XD",
+        "Photoshop",
+        "Illustrator",
+        "Sketch"
+      ]
     },
     {
-      category: "Optimization",
-      items: ["• Accessibility (WCAG)", "• SEO", "• Performance Tuning", "• Cross-Browser Compatibility"],
-    },
+      "category": "Optimization",
+      "items": [
+        "WCAG",
+        "SEO",
+        "Performance",
+        "Core Web Vitals",
+        "Git",
+        "Agile",
+        "Scrum"
+      ]
+    }
   ],
-  experience: [
+  "experience": [
     {
-      role: "UI/UX Engineer",
-      company: "Listrak",
-      date: "2021 – 2025",
-      responsibilities: [
-        "Engineered precision-targeted UI components and enhanced Listrak's enterprise marketing boilerplate, driving an average <strong>30</strong>% increase in list growth and achieving trigger revenue increases upwards of <strong>562</strong>% for high-volume retail partners.",
-        "Maintained and enhanced the enterprise front-end boilerplate and engineered a proprietary virtual demo platform for stakeholders to validate interactive logic and UI/UX patterns prior to deployment.",
-      ],
+      "role": "Senior Front-End Developer",
+      "company": "Listrak",
+      "date": "2021 – 2025",
+      "responsibilities": [
+        "Developed high-conversion, JavaScript-driven email and SMS marketing components for enterprise retail sites.",
+        "Built an interactive JavaScript demo platform enabling strategy teams to showcase live technical integrations to clients.",
+        "Drove client list growth by <strong>30%</strong> via optimized sign-up flows, contributing to an up-to <strong>562%</strong> increase in trigger revenue.",
+        "Maintained Listrak's enterprise boilerplates to ensure cross-browser compatibility and strict WCAG standards.",
+        "Leveraged AI and agentic development workflows to accelerate code generation and expedite problem-solving."
+      ]
     },
     {
-      role: "Full-Stack Developer & Designer",
-      company: "WebTek",
-      date: "2020 – 2021",
-      responsibilities: [
-        "Engineered <strong>50</strong>+ bespoke full-stack ecosystems and custom WordPress themes from scratch, delivering flagship architectures that have remained maintenance-free on original code for <strong>over five years</strong>, while modernizing legacy websites and plugins to meet current accessibility, performance, and SEO standards.",
-      ],
+      "role": "Senior Full-Stack Developer",
+      "company": "WebTek",
+      "date": "2020 – 2021",
+      "responsibilities": [
+        "Engineered <strong>50+</strong> highly-customizable WordPress themes from scratch for a diverse roster of clients.",
+        "Optimized WebTek's boilerplate and custom plugins to achieve <strong>90+</strong> Lighthouse performance scores."
+      ]
     },
     {
-      role: "Senior UI/UX Architect & Engineer",
-      company: "OPEN MINDS",
-      date: "2017 – 2019",
-      responsibilities: [
-        "Spearheaded the full UI/UX redesign and engineering of PsychU.org, successfully scaling the active user base by <strong>315</strong>% to over <strong>82,000</strong> members and achieving <strong>99.99</strong>% site stability during peak traffic periods with a focus on high-traffic performance and content scalability.",
-      ],
+      "role": "Senior Full-Stack Developer & UI/UX Designer",
+      "company": "OPEN MINDS",
+      "date": "2017 – 2019",
+      "responsibilities": [
+        "Led the redesign and development of PsychU.org, growing the active user base by <strong>315%</strong> to over <strong>82,000</strong> members.",
+        "Maintained <strong>99.99%</strong> uptime during high-traffic national events on PsychU.org through rigorous performance tuning.",
+        "Refactored legacy DOM structures within Laravel to ensure enterprise-grade WCAG compliance for clinical audiences."
+      ]
     },
     {
-      role: "Front End Developer (Contract)",
-      company: "Shift Lab NY",
-      date: "2016 – 2017",
-      responsibilities: [
-        "Engineered pixel-perfect React components for Tier-1 initiatives, including <strong>Microsoft Sonoma (Teams)</strong>, by integrating high-fidelity front-end builds with WordPress and a proprietary headless CMS architected on ExpressionEngine.",
-      ],
+      "role": "Front-End Developer",
+      "company": "Shift Lab NY",
+      "date": "2016 – 2017",
+      "responsibilities": [
+        "Engineered responsive React components for Tier-1 corporate marketing initiatives, including <strong>Microsoft Sonoma</strong>.",
+        "Integrated modular, reusable front-end builds with complex WordPress and headless CMS architectures."
+      ]
     },
     {
-      role: "Full-Stack Developer & Designer",
-      company: "AGIS",
-      date: "2014 – 2016",
-      responsibilities: [
-        "Served as the sole technical and creative lead for the end-to-end modernization of legacy enterprise applications. Engineered high-precision, responsive front-end experiences across WordPress, Shopify, DNN, and Drupal, while architecting complex CSS logic to ensure pixel-perfect cross-platform consistency.",
-      ],
-    },
+      "role": "Full-Stack Developer & UI/UX Designer",
+      "company": "agis",
+      "date": "2014 – 2016",
+      "responsibilities": [
+        "Designed and developed custom responsive web applications using PHP, .NET, WordPress, and Shopify setups.",
+        "Collaborated with stakeholders to define goals, translated requirements into designs and code, and trained client teams."
+      ]
+    }
   ],
-  education: [
+  "education": [
     {
-      degree: "Bachelor of Science",
-      major: "Web Design & Interactive Media",
-      school: "Art Institute of York, PA",
-      year: "2013",
+      "degree": "Bachelor of Science",
+      "major": "Web Design & Interactive Media",
+      "school": "Art Institute of York, PA",
+      "year": "2013"
     },
     {
-      degree: "Associate of Science",
-      major: "Digital Arts",
-      school: "Art Institute of York, PA",
-      year: "2011",
-    },
-  ],
+      "degree": "Associate of Science",
+      "major": "Digital Arts",
+      "school": "Art Institute of York, PA",
+      "year": "2011"
+    }
+  ]
 };

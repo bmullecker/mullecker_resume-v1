@@ -1,35 +1,106 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Header from './components/Header';
 import Experience from './components/Experience';
 import Skills from './components/Skills';
 import Education from './components/Education';
 import Jazzify from './components/Jazzify';
+import EditorSidebar from './components/EditorSidebar';
+import VersionManager from './components/VersionManager';
 import { resumeData } from './data';
+import type { ResumeData, VersionsStore, ResumeVersion } from './data';
+
+const initialStore: VersionsStore = {
+  activeId: 'v1',
+  versions: [{ id: 'v1', name: 'Default', createdAt: new Date().toISOString(), data: resumeData }],
+};
 
 function App() {
+  const [data, setData] = useState<ResumeData>(resumeData);
+  const [store, setStore] = useState<VersionsStore>(initialStore);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [versionsOpen, setVersionsOpen] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+
+  // Load versions from disk on first mount
+  useEffect(() => {
+    fetch('/api/versions')
+      .then(r => r.ok ? r.json() : null)
+      .then(serverStore => {
+        if (serverStore?.versions?.length) {
+          setStore(serverStore);
+          const active = serverStore.versions.find((v: ResumeVersion) => v.id === serverStore.activeId);
+          if (active) setData(active.data);
+        }
+      })
+      .catch(() => { /* offline / no server – keep defaults */ })
+      .finally(() => setLoaded(true));
+  }, []);
+
+  // Keep the active version's data in sync as the user edits
+  const handleDataChange = useCallback((newData: ResumeData) => {
+    setData(newData);
+    setStore(prev => ({
+      ...prev,
+      versions: prev.versions.map(v =>
+        v.id === prev.activeId ? { ...v, data: newData } : v
+      ),
+    }));
+  }, []);
+
+  const handleSwitch = (version: ResumeVersion) => {
+    setData(version.data);
+  };
+
   const handlePrint = (e: React.MouseEvent) => {
-    console.log('Print Clicked');
     e.stopPropagation();
     window.print();
   };
 
+  if (!loaded) return null;
+
   return (
-    <div className="min-h-screen bg-gray-50 py-10 print:py-0 print:bg-white text-gray-900 font-sans selection:bg-black selection:text-white">
-      <div className="fixed top-6 right-6 print:hidden flex flex-col sm:flex-row gap-4 z-[9999]">
+    <div className="app-container">
+      <div className="action-toolbar">
         <Jazzify />
         <button
-          onClick={handlePrint}
-          className="bg-black text-white px-6 py-3 rounded-full font-bold shadow-2xl hover:bg-gray-800 transition-all active:scale-95 cursor-pointer !pointer-events-auto"
+          onClick={() => setVersionsOpen(true)}
+          className="btn-versions-toggle"
         >
+          ⎇ Versions
+        </button>
+        <button
+          onClick={() => setSidebarOpen(true)}
+          className="btn-edit-toggle"
+        >
+          Edit Resume
+        </button>
+        <button onClick={handlePrint} className="btn-print">
           Print Resume
         </button>
       </div>
-      <div id="resume-content" className="max-w-4xl mx-auto bg-white shadow-xl print:shadow-none print:max-w-full border border-gray-100 print:border-none p-12 sm:p-16 lg:p-20 print:p-0 print:text-sm">
-        <Header personalInfo={resumeData.personalInfo} />
+
+      <VersionManager
+        store={store}
+        currentData={data}
+        isOpen={versionsOpen}
+        onClose={() => setVersionsOpen(false)}
+        onSwitch={handleSwitch}
+        onStoreChange={setStore}
+      />
+
+      <EditorSidebar
+        data={data}
+        onChange={handleDataChange}
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+      />
+
+      <div id="resume-content" className="resume-wrapper">
+        <Header personalInfo={data.personalInfo} />
         <main>
-          <Experience experience={resumeData.experience} />
-          <Skills categories={resumeData.skills} />
-          <Education education={resumeData.education} />
+          <Experience experience={data.experience} />
+          <Skills categories={data.skills} />
+          <Education education={data.education} />
         </main>
       </div>
     </div>
@@ -37,3 +108,4 @@ function App() {
 }
 
 export default App;
+

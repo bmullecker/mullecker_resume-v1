@@ -27,32 +27,20 @@ export default function EditorSidebar({
     setActiveSection(activeSection === section ? null : section);
   };
 
-  const handleSave = async () => {
-    setSaving(true);
-    setStatus(null);
+  const handleSave = () => {
     try {
-      const response = await fetch('/api/versions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(store),
-      });
-      const result = await response.json();
-      if (result.success) {
-        // Calling onStoreChange uses the prop and resolves the unused variable error
-        onStoreChange(store);
+      // Save the store object as a JSON string in localStorage
+      localStorage.setItem('resume-store', JSON.stringify(store));
 
-        setStatus({ type: 'success', message: 'Saved to versions.json!' });
-        setTimeout(() => setStatus(null), 4000);
-      } else {
-        throw new Error(result.error || 'Unknown server error');
-      }
+      // Update local state
+      onStoreChange(store);
+
+      // Provide user feedback
+      setStatus({ type: 'success', message: 'Saved to browser storage!' });
+      setTimeout(() => setStatus(null), 4000);
     } catch (error: any) {
-      console.error(error);
-      setStatus({ type: 'error', message: error.message || 'Failed to save' });
-    } finally {
-      setSaving(false);
+      console.error("Save error:", error);
+      setStatus({ type: 'error', message: 'Failed to save to local storage' });
     }
   };
 

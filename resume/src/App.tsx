@@ -21,19 +21,11 @@ function App() {
   const [versionsOpen, setVersionsOpen] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
-  // Load versions from disk on first mount
   useEffect(() => {
-    fetch('/api/versions')
-      .then(r => r.ok ? r.json() : null)
-      .then(serverStore => {
-        if (serverStore?.versions?.length) {
-          setStore(serverStore);
-          const active = serverStore.versions.find((v: ResumeVersion) => v.id === serverStore.activeId);
-          if (active) setData(active.data);
-        }
-      })
-      .catch(() => { /* offline / no server – keep defaults */ })
-      .finally(() => setLoaded(true));
+    const savedData = localStorage.getItem('resume-store');
+    if (savedData) {
+      setStore(JSON.parse(savedData));
+    }
   }, []);
 
   // Keep the active version's data in sync as the user edits

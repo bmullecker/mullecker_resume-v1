@@ -36,8 +36,8 @@ export interface ResumeData {
 
 export const resumeData: ResumeData = {
   "personalInfo": {
-    "name": "Bill Mullecker",
-    "title": "UI/UX Designer",
+    "name": "Bill Mulleckers",
+    "title": "Senior Front-End Developer",
     "location": "York, PA",
     "phone": "570-573-6459",
     "email": "bmullecker@gmail.com",

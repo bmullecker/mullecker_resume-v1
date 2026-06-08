@@ -2,12 +2,12 @@ import { promises as fs } from 'fs';
 import path from 'path';
 
 export default async function handler(req: any, res: any) {
-    // Path to your JSON file
     const filePath = path.join(process.cwd(), 'versions.json');
 
     if (req.method === 'POST') {
         try {
             await fs.writeFile(filePath, JSON.stringify(req.body, null, 2));
+            // Ensure you explicitly return the response
             return res.status(200).json({ success: true });
         } catch (error) {
             return res.status(500).json({ success: false, error: 'Write failed' });
@@ -22,4 +22,7 @@ export default async function handler(req: any, res: any) {
             return res.status(500).json({ success: false, error: 'Read failed' });
         }
     }
+
+    // Add this: Handle unsupported methods
+    return res.status(405).json({ success: false, error: 'Method not allowed' });
 }

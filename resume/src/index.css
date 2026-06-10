@@ -16,6 +16,11 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -198,6 +203,7 @@ body {
 /* 1. App Layout Component Styles (App.tsx) */
 .app-container {
   min-height: 100vh;
+  min-height: 100dvh;
   background-color: var(--color-bg-body);
   padding-top: 40px;
   padding-bottom: 40px;
@@ -351,6 +357,13 @@ body {
   gap: 4px;
   font-size: 12px;
   line-height: 1;
+}
+
+.header-contact-info a {
+  color: inherit !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  pointer-events: none;
 }
 
 /* @media print {
@@ -956,17 +969,19 @@ strong {
   display: flex;
   flex-direction: column;
   color: #e5e7eb;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: var(--font-sans);
   z-index: 9999;
 }
 
 .editor-sidebar.closed {
   transform: translateX(100%);
+  visibility: hidden;
 }
 
 .editor-sidebar.open {
   transform: translateX(0);
+  visibility: visible;
 }
 
 .editor-header {
@@ -1769,6 +1784,10 @@ color: #c7d2fe;
 @media screen and (max-width: 767px) {
   .btn-print {
     display: none;
+  }
+
+  .header-title {
+    line-height: 1;
   }
 
   .action-toolbar {

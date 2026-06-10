@@ -240,52 +240,35 @@ body {
   }
 } */
 
-.btn-print,
-.btn-pdf {
-  background-color: #000000;
-  color: #ffffff;
+.action-toolbar button {
+  font-family: 'Inter', arial, sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.01em;
   padding: 12px 24px;
   border-radius: 9999px;
-  font-weight: 700;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  border: none;
-  cursor: pointer;
-  pointer-events: auto !important;
-  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.action-toolbar button {
+  border: 1px solid #9d9d9d;
   background-color: #EAEAEA;
   color: #6a6a6a;
-  border: 1px solid #9d9d9d;
-  transition: 0.4s all;
   box-shadow: none;
+  cursor: pointer;
+  pointer-events: auto !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .action-toolbar button:hover {
   background-color: #a5b4fc;
-  border: 1px solid #333;
+  border-color: #333;
   color: #333;
+}
+
+.action-toolbar button:active {
+  transform: scale(0.95);
 }
 
 .btn-print {
   display: none !important;
 }
-
-.action-toolbar button {
-  font-family: 'Inter', arial, sans-serif;
-}
-
-/* Hide Print on mobile, Hide PDF on Desktop */
-/* @media (max-width: 639px) {
-
-}
-
-@media (min-width: 640px) {
-  .btn-pdf {
-    display: none !important;
-  }
-} */
 
 .resume-wrapper {
   max-width: 816px;
@@ -483,7 +466,8 @@ body {
   font-weight: 500;
   color: #6b7280;
   font-style: italic;
-  text-wrap: pretty;
+  display: inline-block;
+  white-space: nowrap;
 }
 
 .job-date {
@@ -1240,26 +1224,6 @@ strong {
   border-color: rgba(255, 255, 255, 0.3);
 }
 
-.btn-edit-toggle {
-  background-color: #333;
-  color: #a5b4fc;
-  padding: 12px 24px;
-  border-radius: 9999px;
-  font-weight: 700;
-  border: 2px solid #333;
-  cursor: pointer;
-  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-/* .btn-edit-toggle:hover {
-  background-color: #374151;
-  border-color: #4b5563;
-} */
-
-.btn-edit-toggle:active {
-  transform: scale(0.95);
-}
 
 .bullet-manager-row {
   display: flex;
@@ -1354,29 +1318,6 @@ strong {
    Version Manager Styles
    ========================================================================= */
 
-.btn-versions-toggle {
-  background: #a5b4fc;
-  color: #333;
-  padding: 12px 24px;
-  border-radius: 9999px;
-  font-weight: 700;
-  border: 2px solid #a5b4fc;
-  cursor: pointer;
-  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
-  letter-spacing: 0.01em;
-  font-family: 'Inter', arial, sans-serif;
-}
-
-/* .btn-versions-toggle:hover {
-  background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
-   border-color: #6366f1; 
-color: #c7d2fe;
-} */
-
-.btn-versions-toggle:active {
-  transform: scale(0.95);
-}
 
 /* Backdrop */
 .vm-backdrop {
@@ -1385,7 +1326,7 @@ color: #c7d2fe;
   background: rgba(0, 0, 0, 0.65);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  z-index: 9500;
+  z-index: 10000;
   display: flex;
   align-items: center;
   justify-content: center;

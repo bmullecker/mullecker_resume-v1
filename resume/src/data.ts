@@ -147,7 +147,7 @@ export const resumeData: ResumeData = {
     },
     {
       "role": "Full-Stack Developer & UI/UX Designer",
-      "company": "agis",
+      "company": "agis internet marketing",
       "date": "2014 – 2016",
       "responsibilities": [
         "Designed and developed custom responsive web applications using PHP, .NET, WordPress, and Shopify setups.",

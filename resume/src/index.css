@@ -21,6 +21,13 @@ body {
   overflow-x: hidden;
 }
 
+html,
+body,
+#root,
+.app-container {
+  max-height: 100vh;
+}
+
 body {
   margin: 0;
   padding: 0;

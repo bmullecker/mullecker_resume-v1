@@ -21,12 +21,12 @@ body {
   overflow-x: hidden;
 }
 
-html,
+/* html,
 body,
 #root,
 .app-container {
-  max-height: calc(100vh + 40px);
-}
+  max-height: calc(100vh + 40px) ;
+} */
 
 body {
   margin: 0;

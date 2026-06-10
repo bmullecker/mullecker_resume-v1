@@ -1762,3 +1762,61 @@ strong {
     display: none !important;
   }
 }
+
+/* Media Queries */
+
+@media screen and (max-width: 767px) {
+  .btn-print {
+    display: none;
+  }
+
+  .action-toolbar {
+    position: relative;
+    top: 0;
+    right: 0;
+    gap: 0;
+    flex-direction: column;
+  }
+
+  .action-toolbar button {
+    border-radius: 0;
+    margin: 0;
+  }
+
+  .app-container {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  .resume-wrapper {
+    padding: 0.25in;
+  }
+
+  .experience-table {}
+
+  td,
+  .job-company {
+    display: inline;
+    max-width: 100%;
+    width: auto;
+  }
+
+  .job-role-cell {
+    white-space: wrap;
+  }
+
+  .job-date {
+    display: block;
+    margin-top: 4px;
+  }
+
+  .job-date-cell,
+  .year-cell {
+    text-align: left;
+  }
+
+  .skills-category-cell {
+    display: block;
+    margin-bottom: 4px;
+  }
+}

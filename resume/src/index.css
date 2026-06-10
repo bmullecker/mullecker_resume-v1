@@ -23,8 +23,13 @@ body {
 
 /* html,
 body,
-#root, */
+#root,
 .app-container {
+  max-height: calc(100vh + 40px) ;
+} */
+
+html,
+body {
   max-height: calc(100vh + 40px);
 }
 

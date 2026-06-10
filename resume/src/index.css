@@ -1819,4 +1819,9 @@ strong {
     display: block;
     margin-bottom: 4px;
   }
+
+  .editor-sidebar,
+  #resume-content {
+    box-shadow: none;
+  }
 }
